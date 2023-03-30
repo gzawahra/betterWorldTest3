@@ -8,7 +8,7 @@
     <input title="blocked ratio" type="number" class="input" required
       minlength="1" maxlength="3" size="10" v-model="blockedRatio">
       <button title="generate" class="generate-button" @click.prevent="onGenerateCoordinates">generate</button>
-      <button title="generate" class="generate-button" @click.prevent="onPlay">play</button>
+      <button title="generate" class="play-button" @click.prevent="onPlay">play</button>
       <div v-if="showGrid">
         <div v-for="row in tempGridSize" :key="row" class="row">
           <div v-for="col in tempGridSize" :key="col" class="square" :style="{ backgroundColor: coordinates[(row-1) * tempGridSize + col - 1].color, width: size + 'px', height: size + 'px' }">{{ (row-1) * tempGridSize + col }}</div>
@@ -59,13 +59,11 @@ export default defineComponent({
           color = '#949c94'
         }
         if (randomBlocked.includes(i + 1)) {
-          console.log(randomBlocked.includes(i + 1))
           blocked = true
           color = '#000000'
         }
         this.coordinates.push({ color, occupied, blocked })
       }
-      console.log(randomBlocked.length)
       this.tempGridSize = this.gridSize
       this.showGrid = true
     },
@@ -123,6 +121,32 @@ export default defineComponent({
   transform: translate(-50%, -50%);
   z-index: 0;
   pointer-events:none;
+}
+.generate-button {
+    padding: 5px;
+  font-family: agency-fb !important;
+  font-size: 20px;
+  width: 150px;
+  height: 50px;
+  border-radius: 12px;
+  margin: 10px;
+  margin-top: 15px;
+  background-color: rgba(83, 74, 74, 0);
+  border:2px solid rgb(170, 70, 70,0.3);
+  pointer-events: auto;
+}
+.play-button {
+    padding: 5px;
+  font-family: agency-fb !important;
+  font-size: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  margin: 10px;
+  margin-top: 15px;
+  background-color: rgba(83, 74, 74, 0);
+  border:2px solid rgb(170, 70, 70,0.3);
+  pointer-events: auto;
 }
 .input{
       padding: 5px;
